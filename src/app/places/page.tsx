@@ -320,18 +320,18 @@ export default function PlacesPage() {
                 </p>
               </div>
             </div>
-            <div className="px-6 py-4 bg-stone-50 dark:bg-stone-850/50 border-t border-stone-150 dark:border-stone-800 flex items-center justify-end gap-3">
+            <div className="px-6 py-4 bg-stone-50 dark:bg-stone-950 border-t border-stone-150 dark:border-stone-800 flex items-center justify-end gap-3">
               <button
                 type="button"
                 onClick={() => setIsDeleteModalOpen(false)}
-                className="px-4 py-2 rounded-xl border border-stone-250 dark:border-stone-808 text-stone-705 dark:text-stone-300 font-medium text-sm hover:bg-stone-50 dark:hover:bg-stone-800 cursor-pointer"
+                className="px-4 py-2 rounded-xl border border-stone-250 dark:border-stone-800 text-stone-705 dark:text-stone-300 font-medium text-sm hover:bg-stone-50 dark:hover:bg-stone-800 cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 onClick={handleDeletePlace}
                 disabled={deleting}
-                className="px-4 py-2 rounded-xl bg-red-650 hover:bg-red-700 text-white font-medium text-sm transition-all disabled:opacity-50 cursor-pointer"
+                className="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-medium text-sm transition-all disabled:opacity-50 cursor-pointer"
               >
                 {deleting ? "Deleting..." : "Delete"}
               </button>

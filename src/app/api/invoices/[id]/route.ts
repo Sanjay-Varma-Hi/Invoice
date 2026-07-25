@@ -47,6 +47,7 @@ export async function PUT(
         receivedFrom: validation.data.receivedFrom,
         receivedFromAddress: validation.data.receivedFromAddress || "",
         receivedFromId: validation.data.receivedFromId || "",
+        receivedBy: validation.data.receivedBy || "",
         items: validation.data.items,
       },
       { new: true }

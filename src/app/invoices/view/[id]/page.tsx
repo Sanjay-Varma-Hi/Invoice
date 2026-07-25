@@ -31,6 +31,7 @@ interface Invoice {
   receivedFrom: string;
   receivedFromAddress?: string;
   receivedFromId?: string;
+  receivedBy?: string;
   items: InvoiceItem[];
   pdfReference?: string;
 }
@@ -180,7 +181,7 @@ export default function ViewInvoicePage({
         <div className="flex items-center gap-2 self-start sm:self-auto">
           <button
             onClick={() => router.push(`/invoices/create?edit=${invoice._id}`)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-stone-250 dark:border-stone-800 text-stone-705 dark:text-stone-300 bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-850 text-xs font-semibold shadow-xs transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-stone-250 dark:border-stone-800 text-stone-705 dark:text-stone-300 bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-800 text-xs font-semibold shadow-xs transition-colors"
           >
             <Edit className="w-3.5 h-3.5 text-orange-500" />
             Edit
@@ -188,7 +189,7 @@ export default function ViewInvoicePage({
           
           <button
             onClick={() => router.push(`/invoices/create?duplicate=${invoice._id}`)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-stone-250 dark:border-stone-800 text-stone-705 dark:text-stone-300 bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-850 text-xs font-semibold shadow-xs transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-stone-250 dark:border-stone-800 text-stone-705 dark:text-stone-300 bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-800 text-xs font-semibold shadow-xs transition-colors"
           >
             <Copy className="w-3.5 h-3.5 text-orange-500" />
             Duplicate
@@ -243,6 +244,20 @@ export default function ViewInvoicePage({
                   )}
                 </div>
               </div>
+
+              {invoice.receivedBy && (
+                <div className="flex items-start gap-3">
+                  <User className="w-5 h-5 text-stone-400 mt-0.5" />
+                  <div>
+                    <span className="text-xs text-stone-450 dark:text-stone-500 uppercase tracking-wider block font-semibold">
+                      Received By
+                    </span>
+                    <span className="text-stone-800 dark:text-stone-200 text-sm font-medium">
+                      {invoice.receivedBy}
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
 
             <hr className="border-stone-150 dark:border-stone-800" />
@@ -255,7 +270,7 @@ export default function ViewInvoicePage({
               <div className="border border-stone-150 dark:border-stone-800 rounded-xl overflow-hidden">
                 <table className="w-full text-left text-xs">
                   <thead>
-                    <tr className="bg-stone-50 dark:bg-stone-850/50 border-b border-stone-150 dark:border-stone-800 text-stone-500">
+                    <tr className="bg-stone-50 dark:bg-stone-800 border-b border-stone-150 dark:border-stone-800 text-stone-505">
                       <th className="px-4 py-2.5 w-12 text-center">S.No</th>
                       <th className="px-4 py-2.5">Item Name</th>
                       <th className="px-4 py-2.5 w-20 text-center">Qty</th>
@@ -263,7 +278,7 @@ export default function ViewInvoicePage({
                   </thead>
                   <tbody className="divide-y divide-stone-150 dark:divide-stone-800 text-stone-700 dark:text-stone-305">
                     {invoice.items.map((item, index) => (
-                      <tr key={index} className="hover:bg-stone-50/20 dark:hover:bg-stone-850/10">
+                      <tr key={index} className="hover:bg-stone-50/20 dark:hover:bg-stone-800/10">
                         <td className="px-4 py-2.5 text-center text-stone-400 font-medium">{index + 1}</td>
                         <td className="px-4 py-2.5 font-semibold text-stone-900 dark:text-stone-100">{item.itemName}</td>
                         <td className="px-4 py-2.5 text-center font-medium">{item.quantity}</td>
@@ -278,14 +293,14 @@ export default function ViewInvoicePage({
             <div className="grid grid-cols-2 gap-3 pt-2">
               <button
                 onClick={handleDownloadPDF}
-                className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-stone-250 dark:border-stone-805 text-stone-700 dark:text-stone-300 bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-850 text-xs font-semibold shadow-xs transition-colors"
+                className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-stone-250 dark:border-stone-805 text-stone-700 dark:text-stone-300 bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-800 text-xs font-semibold shadow-xs transition-colors"
               >
                 <Download className="w-4 h-4 text-orange-500" />
                 Download PDF
               </button>
               <button
                 onClick={handlePrintPDF}
-                className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-stone-250 dark:border-stone-805 text-stone-700 dark:text-stone-300 bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-850 text-xs font-semibold shadow-xs transition-colors"
+                className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-stone-250 dark:border-stone-805 text-stone-700 dark:text-stone-300 bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-800 text-xs font-semibold shadow-xs transition-colors"
               >
                 <Printer className="w-4 h-4 text-orange-500" />
                 Print PDF
@@ -358,19 +373,19 @@ export default function ViewInvoicePage({
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-4">
           <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 w-full max-w-sm rounded-2xl shadow-xl overflow-hidden animate-scale-in">
             <div className="p-6 text-center space-y-4">
-              <div className="mx-auto w-12 h-12 rounded-full bg-red-100 dark:bg-red-950/30 flex items-center justify-center text-red-650 dark:text-red-500">
+              <div className="mx-auto w-12 h-12 rounded-full bg-red-100 dark:bg-red-950/30 flex items-center justify-center text-red-600 dark:text-red-500">
                 <AlertTriangle className="w-6 h-6" />
               </div>
               <div className="space-y-1">
                 <h3 className="font-semibold text-lg text-stone-900 dark:text-white">
                   Delete Invoice?
                 </h3>
-                <p className="text-xs text-stone-500 dark:text-stone-400">
+                <p className="text-xs text-stone-550 dark:text-stone-400">
                   Are you sure you want to delete this invoice? This action is permanent and cannot be undone.
                 </p>
               </div>
             </div>
-            <div className="px-6 py-4 bg-stone-50 dark:bg-stone-850/50 border-t border-stone-150 dark:border-stone-800 flex items-center justify-end gap-3">
+            <div className="px-6 py-4 bg-stone-50 dark:bg-stone-950 border-t border-stone-150 dark:border-stone-800 flex items-center justify-end gap-3">
               <button
                 type="button"
                 onClick={() => setIsDeleteModalOpen(false)}
@@ -381,7 +396,7 @@ export default function ViewInvoicePage({
               <button
                 onClick={handleDeleteInvoice}
                 disabled={deleting}
-                className="px-4 py-2 rounded-xl bg-red-650 hover:bg-red-700 text-white font-semibold text-xs transition-all disabled:opacity-50"
+                className="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold text-xs transition-all disabled:opacity-50"
               >
                 {deleting ? "Deleting..." : "Delete"}
               </button>

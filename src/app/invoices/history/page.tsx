@@ -311,7 +311,7 @@ export default function InvoiceHistoryPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-stone-200 dark:border-stone-800 text-xs font-semibold uppercase tracking-wider text-stone-400 dark:text-stone-500 bg-stone-50/50 dark:bg-stone-850/50">
+                <tr className="border-b border-stone-200 dark:border-stone-800 text-xs font-semibold uppercase tracking-wider text-stone-400 dark:text-stone-500 bg-stone-50/50 dark:bg-stone-800/50">
                   <th className="px-6 py-4">Date</th>
                   <th className="px-6 py-4">Received From</th>
                   <th className="px-6 py-4">Items Count</th>
@@ -422,7 +422,7 @@ export default function InvoiceHistoryPage() {
                 </p>
               </div>
             </div>
-            <div className="px-6 py-4 bg-stone-50 dark:bg-stone-850/50 border-t border-stone-150 dark:border-stone-800 flex items-center justify-end gap-3">
+            <div className="px-6 py-4 bg-stone-50 dark:bg-stone-950 border-t border-stone-150 dark:border-stone-800 flex items-center justify-end gap-3">
               <button
                 type="button"
                 onClick={() => setIsDeleteModalOpen(false)}
@@ -433,7 +433,7 @@ export default function InvoiceHistoryPage() {
               <button
                 onClick={handleDeleteInvoice}
                 disabled={deleting}
-                className="px-4 py-2 rounded-xl bg-red-650 hover:bg-red-700 text-white font-semibold text-xs transition-all disabled:opacity-50"
+                className="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold text-xs transition-all disabled:opacity-50"
               >
                 {deleting ? "Deleting..." : "Delete"}
               </button>

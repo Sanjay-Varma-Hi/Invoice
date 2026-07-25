@@ -304,7 +304,7 @@ export default function Dashboard() {
               <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse">
                   <thead>
-                    <tr className="border-b border-stone-200 dark:border-stone-800 text-xs font-semibold uppercase tracking-wider text-stone-400 dark:text-stone-500 bg-stone-50/50 dark:bg-stone-850/50">
+                    <tr className="border-b border-stone-200 dark:border-stone-800 text-xs font-semibold uppercase tracking-wider text-stone-400 dark:text-stone-500 bg-stone-50/50 dark:bg-stone-800/50">
                       <th className="px-6 py-4">Date</th>
                       <th className="px-6 py-4">Received From</th>
                       <th className="px-6 py-4">Items Count</th>
@@ -335,7 +335,7 @@ export default function Dashboard() {
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-right">
                           <Link
                             href={`/invoices/view/${invoice._id}`}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-stone-250 dark:border-stone-800 text-xs font-medium text-stone-700 dark:text-stone-300 bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-850 transition-colors"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-stone-250 dark:border-stone-800 text-xs font-medium text-stone-700 dark:text-stone-300 bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
                           >
                             View
                             <ExternalLink className="w-3.5 h-3.5" />

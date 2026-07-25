@@ -92,6 +92,7 @@ function CreateInvoiceForm() {
       receivedFrom: "",
       receivedFromAddress: "",
       receivedFromId: "",
+      receivedBy: "",
       items: [{ itemId: "", itemName: "", quantity: 1 }],
     },
   });
@@ -150,6 +151,7 @@ function CreateInvoiceForm() {
           receivedFrom: isDuplicate ? `${invoice.receivedFrom} (Copy)` : invoice.receivedFrom,
           receivedFromAddress: invoice.receivedFromAddress || "",
           receivedFromId: invoice.receivedFromId || "",
+          receivedBy: invoice.receivedBy || "",
           items: invoice.items.map((item: any) => ({
             itemId: item.itemId,
             itemName: item.itemName,
@@ -238,6 +240,7 @@ function CreateInvoiceForm() {
       receivedFrom: "",
       receivedFromAddress: "",
       receivedFromId: "",
+      receivedBy: "",
       items: [{ itemId: "", itemName: "", quantity: 1 }],
     });
     setEditingInvoiceId(null);
@@ -361,7 +364,7 @@ function CreateInvoiceForm() {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         
         {/* Invoice Header Card */}
-        <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-6 shadow-xs grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-6 shadow-xs grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Date Picker */}
           <div className="space-y-1.5">
             <label className="flex items-center gap-1.5 text-sm font-semibold text-stone-700 dark:text-stone-300">
@@ -468,8 +471,25 @@ function CreateInvoiceForm() {
             )}
           </div>
 
+          {/* Received By (Person) */}
+          <div className="space-y-1.5">
+            <label className="flex items-center gap-1.5 text-sm font-semibold text-stone-700 dark:text-stone-300">
+              <User className="w-4 h-4 text-stone-450" />
+              Received By (Person)
+            </label>
+            <input
+              type="text"
+              {...register("receivedBy")}
+              placeholder="e.g. sanjay, ravi"
+              className="w-full px-4 py-2.5 rounded-xl border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-950 text-stone-900 dark:text-white placeholder-stone-400 focus:outline-hidden focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all text-sm shadow-xs"
+            />
+            {errors.receivedBy && (
+              <p className="text-xs text-red-500 font-medium">{errors.receivedBy.message}</p>
+            )}
+          </div>
+
           {/* Received From Address */}
-          <div className="md:col-span-2 space-y-1.5">
+          <div className="md:col-span-3 space-y-1.5">
             <label className="flex items-center gap-1.5 text-sm font-semibold text-stone-700 dark:text-stone-300">
               <MapPin className="w-4 h-4 text-stone-450" />
               Received From Address (Supplier / Place Address)
@@ -488,7 +508,7 @@ function CreateInvoiceForm() {
 
         {/* Invoice Items Table Card */}
         <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl shadow-xs overflow-hidden">
-          <div className="px-6 py-4 border-b border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-850/50 flex items-center justify-between">
+          <div className="px-6 py-4 border-b border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-800/50 flex items-center justify-between">
             <h2 className="font-semibold text-stone-800 dark:text-white text-sm">
               Items Breakdown
             </h2>
@@ -636,7 +656,7 @@ function CreateInvoiceForm() {
             <button
               type="button"
               onClick={() => append({ itemId: "", itemName: "", quantity: 1 })}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-stone-250 dark:border-stone-800 text-xs font-semibold text-stone-750 dark:text-stone-300 bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-850 cursor-pointer shadow-xs transition-colors"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-stone-250 dark:border-stone-800 text-xs font-semibold text-stone-750 dark:text-stone-300 bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-800 cursor-pointer shadow-xs transition-colors"
             >
               <Plus className="w-3.5 h-3.5 text-orange-500" />
               Add Item Row
@@ -683,7 +703,7 @@ function CreateInvoiceForm() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
           <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 w-full max-w-4xl rounded-2xl shadow-xl overflow-hidden flex flex-col max-h-[90vh] animate-scale-in">
             {/* Modal Header */}
-            <div className="px-6 py-5 border-b border-stone-200 dark:border-stone-800 flex items-center justify-between bg-stone-50/50 dark:bg-stone-850/50">
+            <div className="px-6 py-5 border-b border-stone-200 dark:border-stone-800 flex items-center justify-between bg-stone-50/50 dark:bg-stone-800/50">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5 text-green-500" />
                 <h3 className="font-bold text-lg text-stone-900 dark:text-white">
@@ -723,14 +743,14 @@ function CreateInvoiceForm() {
               <div className="flex items-center gap-2 w-full sm:w-auto">
                 <button
                   onClick={handleDownloadPDF}
-                  className="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl border border-stone-250 dark:border-stone-800 text-stone-700 dark:text-stone-300 font-semibold text-xs bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-850 transition-colors"
+                  className="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl border border-stone-250 dark:border-stone-800 text-stone-700 dark:text-stone-300 font-semibold text-xs bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
                 >
                   <Download className="w-4 h-4 text-orange-500" />
                   Download PDF
                 </button>
                 <button
                   onClick={handlePrintPDF}
-                  className="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl border border-stone-250 dark:border-stone-800 text-stone-700 dark:text-stone-300 font-semibold text-xs bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-850 transition-colors"
+                  className="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl border border-stone-250 dark:border-stone-800 text-stone-700 dark:text-stone-300 font-semibold text-xs bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
                 >
                   <Printer className="w-4 h-4 text-orange-500" />
                   Print PDF

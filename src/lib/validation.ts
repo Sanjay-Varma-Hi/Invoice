@@ -31,5 +31,6 @@ export const InvoiceValidationSchema = z.object({
   receivedFrom: z.string().min(1, "Received From is required").trim(),
   receivedFromAddress: z.string().optional().default(""),
   receivedFromId: z.string().optional(),
+  receivedBy: z.string().optional().default(""),
   items: z.array(InvoiceItemValidationSchema).min(1, "At least one item is required"),
 });

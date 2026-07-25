@@ -60,6 +60,7 @@ export async function POST(request: Request) {
       receivedFrom: validation.data.receivedFrom,
       receivedFromAddress: validation.data.receivedFromAddress || "",
       receivedFromId: validation.data.receivedFromId || "",
+      receivedBy: validation.data.receivedBy || "",
       items: validation.data.items,
     });
 

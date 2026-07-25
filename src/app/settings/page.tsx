@@ -149,7 +149,7 @@ export default function SettingsPage() {
                   </div>
                 </div>
               ) : (
-                <div className="w-24 h-24 rounded-xl border border-stone-200 dark:border-stone-805 bg-stone-100 dark:bg-stone-850 flex flex-col items-center justify-center text-stone-400 dark:text-stone-500">
+                <div className="w-24 h-24 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-100 dark:bg-stone-800 flex flex-col items-center justify-center text-stone-400 dark:text-stone-500">
                   <ImageIcon className="w-8 h-8" />
                   <span className="text-[10px] mt-1 font-medium">No Logo</span>
                 </div>
@@ -158,7 +158,7 @@ export default function SettingsPage() {
                 <p className="text-xs text-stone-500 dark:text-stone-405">
                   Upload an image for your restaurant invoice PDF header. File size should be under 2MB.
                 </p>
-                <label className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl border border-stone-250 dark:border-stone-800 text-xs font-semibold text-stone-750 dark:text-stone-300 bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-850 cursor-pointer shadow-xs transition-colors">
+                <label className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl border border-stone-250 dark:border-stone-800 text-xs font-semibold text-stone-750 dark:text-stone-300 bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-800 cursor-pointer shadow-xs transition-colors">
                   <Upload className="w-3.5 h-3.5 text-orange-500" />
                   Upload Image
                   <input

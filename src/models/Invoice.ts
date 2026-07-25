@@ -11,6 +11,7 @@ export interface IInvoice extends Document {
   receivedFrom: string;
   receivedFromAddress?: string;
   receivedFromId?: string;
+  receivedBy?: string;
   items: IInvoiceItem[];
   pdfReference?: string; // Base64 PDF data string
   createdAt: Date;
@@ -29,6 +30,7 @@ const InvoiceSchema: Schema<IInvoice> = new Schema(
     receivedFrom: { type: String, required: true, trim: true },
     receivedFromAddress: { type: String, default: "" },
     receivedFromId: { type: String },
+    receivedBy: { type: String, default: "" },
     items: { type: [InvoiceItemSchema], required: true },
     pdfReference: { type: String },
   },

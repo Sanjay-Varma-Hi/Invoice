@@ -10,6 +10,7 @@ interface InvoiceData {
   date: string | Date;
   receivedFrom: string;
   receivedFromAddress?: string;
+  receivedBy?: string;
   items: InvoiceItem[];
 }
 
@@ -135,6 +136,10 @@ export function generateInvoicePDF(invoice: InvoiceData, settings: SettingsData)
   doc.setFontSize(8.5);
   doc.setTextColor(71, 85, 105); // slate-600
   doc.text(`Invoice date: ${formattedDate}`, margin, currentY);
+  if (invoice.receivedBy) {
+    currentY += 4;
+    doc.text(`Received by: ${invoice.receivedBy}`, margin, currentY);
+  }
   currentY += 8;
 
   // 5. Invoice Items Table
